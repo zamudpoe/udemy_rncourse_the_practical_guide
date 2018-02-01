@@ -1,0 +1,37 @@
+React Native & Redux
+  "Mejor uso del estado desde donde sea!"
+
+En nuestra terminal en la raiz del proyecto instalamos por medio de npm install --save las siguientes librerias:
+  redux : Esta libreria es redux y por si sola no conoce React ni React Native
+  react-redux : Esta libreria nos permite conectar redux con nuestras aplcaciones React sin importar sean web o aplicaciones nativas (ios o android)
+
+01 Instalamos :
+  npm install --save redux react-redux
+
+02 Creamos en ./src/ la carpetas store y dentro las carpetas redux y actions
+    ./src/store
+      /actions
+      /reducers
+
+03 Creanos nuestro reductor "places.js"
+
+    const initialState =  {
+      places: [],
+      selectedPlace: null
+    }
+
+    const reducers = (state = initialState , action) => {
+      switch (action.type) {
+        case value:   // hay que crear nuestros action.type , vaya configurar nuestras acciones para configurarlas en nuestro selector.
+
+        default:
+          return state
+      }
+    }
+
+    export default reducers
+
+
+04 IMPORTAMOS
+
+04 USAMOS
