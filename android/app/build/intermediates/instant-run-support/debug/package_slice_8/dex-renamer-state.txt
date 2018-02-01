@@ -1,0 +1,4 @@
+#Mon Jan 29 10:51:38 CST 2018
+base.0=/Users/engelbert.zamudio/Documents/PRUEBAS/udemy/ReactNative_The_Practical_Guide/rn-course/android/app/build/intermediates/transforms/dexMerger/debug/9
+path.0=classes.dex
+renamed.0=classes.dex
