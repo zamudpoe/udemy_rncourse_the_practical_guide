@@ -12,12 +12,12 @@ export default class App extends Component {
     selectedPlace: null
   }
 
-  _onInputPlaceHandler = txtPlace => {
+  _onInputPlaceHandler = placeName => {
     this.setState(prevState => {
       return {
         places: prevState.places.concat({
           key  : Math.random() ,
-          name : txtPlace,
+          name : placeName,
           image: {
             uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYcu0o6k5_xNerrMW0WqpOTQqeFRR6_Wm306p5YFQougoJsbq3"
           }
@@ -26,7 +26,7 @@ export default class App extends Component {
     }, console.log('%c_onInputPlaceHandler', 'color: green; font-weight: bold;'))
   }
 
-  _onItemDeleted = () => {
+  _onItemDeletedHandler = () => {
     this.setState(prevState => {
       return {
         places: prevState.places.filter(place => {
@@ -59,7 +59,7 @@ export default class App extends Component {
         <Text style= { styles.textLabel } >🗽 Mis Lugares!XX</Text>
         <PlaceDetail
           selectedPlace = { this.state.selectedPlace }
-          onItemDeleted = { this. _onItemDeleted.bind(this) }
+          onItemDeleted = { this. _onItemDeletedHandler.bind(this) }
           onModalClose  = { this._onModalClose.bind(this) }
         />
         <InputPlaces onPlaceAdded= { this._onInputPlaceHandler.bind(this) } />

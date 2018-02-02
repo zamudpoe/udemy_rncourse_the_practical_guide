@@ -1,0 +1,31 @@
+Necesitamo escribir 3 actions para nuestra app, los handlers que convertiremos en funciones los podemos encontrar en nuestro archivo App.js :
+
+    _onInputPlaceHandler
+    _onItemDeletedHandler
+    _placeSelectedHandler
+
+  y tal vez uno extra para UnSelected a Place:
+    _unSelectedPlaceHandler
+
+Creacion los tipos de accion en el archivo "actionTypes.js" :
+  La creacion de tipos de acciones nos permite evitar equivocarnos al escribir sus nombres
+   y localizar mas rapido un error referente a los tipos de acciones
+
+  export const ADD_PLACE      = 'ADD_PLACE'
+  export const DELETE_PLACE   = 'DELETE_PLACE'
+  export const SELECT_PLACE   = 'SELECT_PLACE'
+  export const DESELECT_PLACE = 'DESELECT_PLACE'
+
+Creamos el archivo "places.js" para las acciones
+
+  export const addPlace = (placeName) => {
+    return {
+      type: ADD_PLACE,
+      payload: // el payload sabremos si lo tendremos si tenemos argumentos en las funciones hnadlers en app.js
+    }
+  }
+
+Creamos nuestro archivo de entrada index.js para en un solo export exportar todo la configuracion en places.js y actionTypes.js
+  export { addPlace, deletePlace, selectPlace, deselectPlace } from './places'
+
+Listo con esto tenemos creado nuestras acciones con sus tipos de acciones... lo que procede es usarlas en el reductor places.js , en el siguiente capitulo veremos eso!
