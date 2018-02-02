@@ -1,0 +1,78 @@
+Section 3 - 44 Setting Up The Reducer
+
+PASO 01 : Importamos los tupos de acciones en nuestro reducer places.js
+  import { ADD_PLACE, DELETE_PLACE, SELECT_PLACE, DESELECT_PLACE } from '../actions/actionTypes'
+
+PASO 02 : En places.js Creamos los cases para nuestro reductor , trayendono la logica correspondiente al tipo de accion desde app.js
+
+      Hacemos las correcciones pertiinenetes
+        prevState por state
+        en la propiedad name su valor ahora sera action.placeName
+
+      case ADD_PLACE:
+      return {
+        ...state,
+        places: state.places.concat({
+          key  : Math.random() ,
+          name : action.placeName,
+          image: {
+            uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYcu0o6k5_xNerrMW0WqpOTQqeFRR6_Wm306p5YFQougoJsbq3"
+          }
+        })
+      }
+
+  Hacemos lo mismo para los demas handlers, nos llevamos de app.js el objeto places de cada handler y lo pegamos en su case correspondiente... nos quedara un redutor asi:
+
+    const reducers = (state = initialState , action) => {
+      switch (action.type) {
+        // Hay que configurar nuestras acciones para configurarlas en nuestro selector medio de sus action.type
+        case ADD_PLACE:
+          return {
+            ...state,
+            places: state.places.concat({
+              key  : Math.random() ,
+              name : action.placeName,
+              image: {
+                uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYcu0o6k5_xNerrMW0WqpOTQqeFRR6_Wm306p5YFQougoJsbq3"
+              }
+            })
+          }
+
+        case DELETE_PLACE:
+          return {
+            ...state,
+            places: state.places.filter(place => {
+              return place.key !== state.selectedPlace.key
+            }),
+            selectedPlace: null
+          }
+
+        case SELECT_PLACE:
+          return {
+            selectedPlace: state.places.find(place => {
+              return place.key === action.placeKey
+            })
+          }
+
+        case DESELECT_PLACE:
+          return {
+            ...state,
+            selectedPlace: null
+          }
+
+        default:
+          return state
+      }
+    }
+
+
+
+NOTA: Ya tenemos nuestras acciones configuradas en nuestro reductor places.js ahora uqe sigue?
+
+    Nuestra meta ahora sera conectear nuestra Aplicacion de React Native con Redux para que asi podamos
+    despachar las acciones creadas y ya configuradas en su reductor, esto lo veremos en el sigueinte capitulo!
+
+
+
+
+
