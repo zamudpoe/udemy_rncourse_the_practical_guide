@@ -1,56 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component }       from 'react'
 import { StyleSheet, View, Text } from 'react-native'
+import { connect }                from 'react-redux' // connect es un componente de alto rango.
 
-import InputPlaces from './src/components/InputPlaces'
-import ListPlaces  from './src/components/ListPlaces'
-import PlaceDetail from './src/components/PlaceDetail'
-import placeImage from './src/assets/beautiful-place.jpg'
+import InputPlaces                from './src/components/InputPlaces'
+import ListPlaces                 from './src/components/ListPlaces'
+import PlaceDetail                from './src/components/PlaceDetail'
+import placeImage                 from './src/assets/beautiful-place.jpg'
+import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions/index'
 
-export default class App extends Component {
-  state = {
-    places: [],
-    selectedPlace: null
-  }
+class App extends Component {
 
   _onInputPlaceHandler = placeName => {
-    this.setState(prevState => {
-      return {
-        places: prevState.places.concat({
-          key  : Math.random() ,
-          name : placeName,
-          image: {
-            uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYcu0o6k5_xNerrMW0WqpOTQqeFRR6_Wm306p5YFQougoJsbq3"
-          }
-        })
-      }
-    }, console.log('%c_onInputPlaceHandler', 'color: green; font-weight: bold;'))
+    this.props.onAddPlace(placeName)
   }
 
   _onItemDeletedHandler = () => {
-    this.setState(prevState => {
-      return {
-        places: prevState.places.filter(place => {
-          return place.key !== prevState.selectedPlace.key
-        }),
-        selectedPlace: null
-      };
-    })
+    this.props.onDeletePlace()
   }
 
   _onModalClose = () => {
-    this.setState({
-      selectedPlace: null
-    }, console.log('\n\t\t%cBYE BYeE!!','color: orange; fontWeight: bold;'))
+    this.props.onDeSelectPlace()
   }
 
   _placeSelectedHandler = key  => {
-    this.setState(prevState => {
-      return {
-        selectedPlace: prevState.places.find(place => {
-          return place.key === key
-        })
-      }
-    })
+    this.props.onSelectPlace(key)
   }
 
   render () {
@@ -58,13 +31,13 @@ export default class App extends Component {
       <View style={ styles.container }>
         <Text style= { styles.textLabel } >🗽 Mis Lugares!XX</Text>
         <PlaceDetail
-          selectedPlace = { this.state.selectedPlace }
+          selectedPlace = { this.props.selectedPlace }
           onItemDeleted = { this. _onItemDeletedHandler.bind(this) }
           onModalClose  = { this._onModalClose.bind(this) }
         />
         <InputPlaces onPlaceAdded= { this._onInputPlaceHandler.bind(this) } />
         <ListPlaces
-          places         = { this.state.places }
+          places         = { this.props.places }
           onItemSelected = { this._placeSelectedHandler }
         />
       </View>
@@ -94,3 +67,21 @@ const styles = StyleSheet.create({
     fontSize: 24,
   }
 })
+
+const mapStateToProps = state => {
+  return {
+    places       : state.places.places,
+    selectedPlace: state.places.selectedPlace
+  }
+}
+
+const mapDispatchToProps = dispatch  => {
+  return {
+    onAddPlace     : (name) => dispatch(addPlace(name)),
+    onDeletePlace  : () => dispatch(deletePlace()),
+    onSelectPlace  : (key) =>  dispatch(selectPlace(key)),
+    onDeSelectPlace: () => dispatch(deselectPlace())
+  }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps) (App)

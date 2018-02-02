@@ -1,0 +1,108 @@
+Section 3 - 46 Connecting React Native to Redux
+
+PASO 01 : en nuestro contenedor App.js importamos la libreria connect
+  import { connect }from 'react-redux' // connect es un componente de alto rango.
+
+PASO 02 : Separamos export default de la definicion de la clase App y lo movemos al final del archivo
+
+  export default App
+
+PASO 03 : Conectams nuestro componente al store de redux, pasandole como parametro a connect nuestra App
+
+  export default connect () (App)
+
+PASO 04 : importamos las acciones para atacharselas a nuestras props gracias a connect y puesan ser despachadas por su funcion mapDispatchToProps
+  import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions/index'
+
+PASO 05 : definimos e instanciamos las funciones mapStateToProps & mapDispatchToProps
+
+    const mapStateToProps = state => {
+      return {
+        places       : state.places.places,   // el primer places proviene de configurestore.js y el segundo proviene de nuestro state en ./reducers/places.js
+        selectedPlace: state.places.selectedPlace
+      }
+    }
+
+    const mapDispatchToProps = dispatch  => {
+      return {
+        onAddPlace     : (name) => dispatch(addPlace(name)),
+        onDeletePlace  : () => dispatch(deletePlace()),
+        onSelectPlace  : (key) =>  dispatch(selectPlace(key)),
+        onDeSelectPlace: () => dispatch(deselectPlace())
+      }
+    }
+
+
+PASO 06 : pasamos como parametros nuestras funciones, primero mapStateToProps y despues : mapDispatchToProps
+    export default connect (mapStateToProps, mapDispatchToProps) (App)
+
+
+PASO 07 : Eliminanos el state del componente
+    state= {
+      places: [],
+      selectedPlace: null
+    }
+
+PASO 08: eliminamos todos nuestros setState de muestros handlers y en su lugar comenzamos a despachar acciones.
+  _onInputPlaceHandler = placeName => {
+      this.props.onAddPlace(placeName)
+    }
+
+    _onItemDeletedHandler = () => {
+      this.props.onDeletePlace()
+    }
+
+    _onModalClose = () => {
+      this.props.onDeSelectPlace()
+    }
+
+    _placeSelectedHandler = key  => {
+      this.props.onSelectPlace(key)
+    }
+
+
+PASO 09 : Sustituimos la palabra state por props en la renderizada de nuestros componentes:
+
+    render () {
+        return (
+          <View style={ styles.container }>
+            <Text style= { styles.textLabel } >🗽 Mis Lugares!XX</Text>
+            <PlaceDetail
+              selectedPlace = { this.state.selectedPlace }
+              onItemDeleted = { this. _onItemDeletedHandler.bind(this) }
+              onModalClose  = { this._onModalClose.bind(this) }
+            />
+            <InputPlaces onPlaceAdded= { this._onInputPlaceHandler.bind(this) } />
+            <ListPlaces
+              places         = { this.state.places }
+              onItemSelected = { this._placeSelectedHandler }
+            />
+          </View>
+        )
+      }
+
+por :
+
+    render () {
+        return (
+          <View style={ styles.container }>
+            <Text style= { styles.textLabel } >🗽 Mis Lugares!XX</Text>
+            <PlaceDetail
+              selectedPlace = { this.props.selectedPlace }
+              onItemDeleted = { this. _onItemDeletedHandler.bind(this) }
+              onModalClose  = { this._onModalClose.bind(this) }
+            />
+            <InputPlaces onPlaceAdded= { this._onInputPlaceHandler.bind(this) } />
+            <ListPlaces
+              places         = { this.props.places }
+              onItemSelected = { this._placeSelectedHandler }
+            />
+          </View>
+        )
+      }
+
+LSITOOOO a probar nuestra app
+
+¿¿¿ QUE SIGUE ???
+
+¿QUE TAL DEBUGGING Y ACCIONES ASYNCRONAS ?
