@@ -1,0 +1,51 @@
+Section 3 - 45 Creating The Store.txt
+
+Con nuestras acciones y reductor terminados ahora necesitamos conectar nuestra aplicacion React Native con Redux
+
+Vamos a envolver nuestr App en nuestro entry point principal con Provider y le pasaremos la store
+
+    <Provider store= { store } >
+      <App />
+    </Provider>
+
+01 : Creamos configureStore.js
+  import { createStore, combineReducers } from 'redux'
+  import placesReducer from './reducers/places'
+
+  const rootReducer = combineReducers({
+    places: placesReducer
+  })
+
+  // Creamos la store
+  const configureStore = () => {
+    return createStore(rootReducer)
+  }
+
+  export default configureStore
+
+02 : En index.js importamos las librerias necesarias y configuramos
+
+  import React              from 'react'
+  import { AppRegistry }    from 'react-native'
+  import { Provider }       from 'react-redux'
+  import App                from './App'
+  import { configureStore } from './src/store/configureStore' // Importamos configureStore
+
+  // Importamos configureStore y se lo asignamos la constante store
+  const store = configureStore()
+
+  // Envolvemos nuestra App con Provider ya configurado con la store
+  const RNRedux = () => (
+    <Provider store= { store } >
+      <App />
+    </Provider>
+  )
+
+  // Registramos y renderizamos nuestro compomente JSX 'RNRedux'
+  AppRegistry.registerComponent('rncourse', () => RNRedux)
+
+  LISTOOOO ASI ES COMO CONECTAMOS NUESTRA STORE A NUESTRA APP REACT-NATIVE
+
+    ¿¿¿¿QUE SIGUE????
+
+  CONECTAR NUESTRO CONTENEDOR A REACT REDUX PARA QUE PODAMOS DESPACHAR ACCIONES Y PODAMOS OBTENER NUESTRO ESTADO... EN EL PROXIMO CAPITULO!
