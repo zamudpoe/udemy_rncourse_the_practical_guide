@@ -1,0 +1,34 @@
+Bien ya hemos instalado nuestra primera libreria de terceros "react-native-vector-icons" de forma local,
+ahora vamos a vincularla anuestro proyecto en iOS
+
+  1.- Nos vamos a la carpeta ./ios/rncourse.xcodeproj con nuestro editor XCode
+
+    NOTA: Ahora bien en XCode para cada libreria que toca caracteristicas nativas del dispositivo,
+          hay al menos 2 pasos que necesitamo realizar, y si existen pasos adicionales siempre podremos encontrarlos en la documentacion oficial de la libreria
+
+        1: en el panel izquiero de nuestro editor XCode , buscamos la seccion Libraries
+        2: Le damos boton derecho a Libraries
+        3: Add Files to "rncourse" ...
+        4: Nos vamos a la carpeta ./ios y seleccionamos "rncourse.xcodeproj"
+        5: buscamos en el centro de nuestro editor una seccion llamada "build phases" y le damos al boton + "add items"
+        6: y en la busqueda filtrada escribimos vector y seleccionamos muestra libreria "libRNvectorIcons.a"
+
+2.- Seguimos las instrucciones adicionales para agregar de manera "manual" nuestros iconos a nuestro proyecto
+
+  AGREAGR FUENTES:
+    Buscamos en node_modules/react-native-vector-icons la carpeta /Fonts y la copiamos las fuentes (*.ttf) a nuestro proyeco XCode,
+    esto lo logramos abriendo en finder la carpeta con las fuentes node_modules/react-native-vector-icons/fonts y arrastramos
+    "ionicons.ttf" a nuestro editor de XCode en la seccion del proyecto rncourse
+
+    Nos abrira un dialogo para escoger las opciones para nuestras fuentes , en nuestro caso vamos a seleccionar rncourse en la seccioi Add to targets ,
+    lo demas lo dejamos como esta!
+
+     ATENCION: Seleccionar "Create groups" is checked if you add the whole folder.
+
+  EDITAR info.plist
+    Agregamos (con click derecho sobre info.plist) una nueva llave "Fonts provided by application" con el valor "ionicons.ttf"
+
+      ATENCION: debemos verificar que en la seccion de "Copy Bundle Resources" nos aparezca nuestra fuente o carpeta de fuentes agregada al proyecto XCode.
+
+
+LISTO!!! , en la proxima seccion veremos como agregar las fuentes a nuestro proyecto en Android

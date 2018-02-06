@@ -1,0 +1,61 @@
+
+  1. Nos vamos a la carpeta ./android/ y abrimos el archivo settings.gradle y agregamos:
+      include ':react-native-vector-icons'
+      project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
+
+  2. nos vamos a la carpeta ./android/app/ y editamos el archivo "build.gradle" , buscamos la seccion "dependencies"
+
+        dependencies {
+            compile fileTree(dir: "libs", include: ["*.jar"])
+            compile "com.android.support:appcompat-v7:23.0.1"
+            compile "com.facebook.react:react-native:+"  // From node_modules
+        }
+
+    y agregamos al final: compile project(':react-native-vector-icons')
+
+        dependencies {
+            compile fileTree(dir: "libs", include: ["*.jar"])
+            compile "com.android.support:appcompat-v7:23.0.1"
+            compile "com.facebook.react:react-native:+"  // From node_modules
+            compile project(':react-native-vector-icons')
+        }
+
+  3. editamos el archivo MainApplication.java que esta en : android/app/src/main/java/com/rncourse y agregamos :
+    ...
+    import com.oblador.vectoricons.VectorIconsPackage;
+    ...
+
+  4. Por ultimo en el mismo archivo MainApplication.java necesitamos agregar una entrada ", new VectorIconsPackage()" a
+
+        @Override
+        protected List<ReactPackage> getPackages() {
+          return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            new VectorIconsPackage()
+          );
+        }
+
+      nos quedara algo asi:
+
+        @Override
+        protected List<ReactPackage> getPackages() {
+          return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            new VectorIconsPackage()
+          );
+        }
+
+
+
+Editamos android/app/build.gradle ( NOT android/build.gradle ) y agregamos lo siguiente:
+
+
+    project.ext.vectoricons = [
+        iconFontNames: [ 'Ionicons.ttf' ] // Name of the font files you want to copy
+    ]
+
+    apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+
+
+LISTO!! , la proxima vez que construyamos nuestra aplicacion android con npm run android  (react-native run-android), copiara todas las fuentes
