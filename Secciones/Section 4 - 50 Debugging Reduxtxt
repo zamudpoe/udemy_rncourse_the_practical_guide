@@ -1,0 +1,54 @@
+Section 4 - 53. Debugging Redux
+
+Para poder realizar una depuracion de nuestra app con la store y redux , tendremos que importar algo mas de la libreria de redux
+y esta otra cosa o herramienta es "compose" , para nuestro middleware del paquete Redux
+
+En nuestra store "configureStore.js "  importaremos compose
+
+  import { createStore, combineReducers } from 'redux'
+
+  import { createStore, combineReducers, composer } from 'redux'
+
+Que nos permitira basicamente agregar middleware moldeable a través de nuestra store...
+
+  NOTA: Múltiples "Potenciadores", no "Middleware". Middleware es un tipo de "Potenciador",
+        Redux DevTools es otro tipo. compose() le permite usar más de uno.
+
+Declaramos la constante composeEnhancers en configureStore.js
+
+  const composeEnhancers = compose ;
+
+La idea aqui es que podamos usar la funcionalidad de compose para aggregar middleware a nuestra Store ó
+que podamos usar la que obtenemos des dev tools "window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"
+
+  url: https://github.com/jhen0409/react-native-debugger/blob/master/docs/redux-devtools-integration.md
+
+Al tener instalado react dev tools nos proporciona variables o funcionalidad en modo desarrollo,
+bien ahora nuestro archivo: configureStore.js nos quedara asi:
+
+    import { createStore, combineReducers, compose } from 'redux'
+    import placesReducer from './reducers/places'
+
+    const rootReducer = combineReducers({
+      places: placesReducer
+    })
+
+
+    let composeEnhancers = compose
+
+    // Solo si estamos en modo desarrollo
+    if (__DEV__) {
+      composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    }
+
+    const configureStore = () => {
+      return createStore(rootReducer, composeEnhancers())
+    }
+
+    export default configureStore
+
+
+
+
+
+
