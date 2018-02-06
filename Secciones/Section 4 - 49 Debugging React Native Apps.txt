@@ -1,0 +1,29 @@
+Section 4 - 49 Debugging React Native Apps
+Finding & Fixing Errors
+
+En nuestro navegador abrimos esta direccion : http://localhost:8081/debugger-ui/y habilitamos
+la consola del desarrollador para ver la consola que la vamos a utilizar.
+
+Teniendo nuestros simuladores abiertos podemos abrir la consola de desarrolador
+  IOs     : CMD + D
+  Android : CMD + M
+
+Comandos utiles
+  Reload (IOS) CMD + R , (Android) R, R
+  Start Remote JS Debugging
+  Enable Live Reload
+  Enable Hot Reloading
+
+Instalar React Native Debugger
+
+  brew update && brew cask install react-native-debugger
+
+En el spotlight buscamos por : React Native Debugger.app
+
+Esta herramienta nos permite realizar una depuracion mas avanzada y practica, explotando muy bien las caracteristicas de los emuladores
+
+  Enable Llive Reload
+  Enable Hot Reloading
+  Start Remote Js Debugging
+
+Para poder realizar un debugging de una app con Redux tendremos que realizar algo mas... lo cual lo veremos en el siguiente capitulo "capitulo 53 Debugging Redux"

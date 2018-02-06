@@ -12,6 +12,7 @@ class App extends Component {
 
   _onInputPlaceHandler = placeName => {
     this.props.onAddPlace(placeName)
+    console.log('%c%s', 'color: tomato; font-size: 2em;', placeName)
   }
 
   _onItemDeletedHandler = () => {
@@ -29,7 +30,7 @@ class App extends Component {
   render () {
     return (
       <View style={ styles.container }>
-        <Text style= { styles.textLabel } >🗽 Mis Lugares!XX</Text>
+        <Text style= { styles.textLabel } >🗽 Mis Lugares</Text>
         <PlaceDetail
           selectedPlace = { this.props.selectedPlace }
           onItemDeleted = { this. _onItemDeletedHandler.bind(this) }
