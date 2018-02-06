@@ -5,8 +5,9 @@ y esta otra cosa o herramienta es "compose" , para nuestro middleware del paquet
 
 En nuestra store "configureStore.js "  importaremos compose
 
+Antes:
   import { createStore, combineReducers } from 'redux'
-
+Ahora:
   import { createStore, combineReducers, composer } from 'redux'
 
 Que nos permitira basicamente agregar middleware moldeable a través de nuestra store...
@@ -24,6 +25,13 @@ que podamos usar la que obtenemos des dev tools "window.__REDUX_DEVTOOLS_EXTENSI
   url: https://github.com/jhen0409/react-native-debugger/blob/master/docs/redux-devtools-integration.md
 
 Al tener instalado react dev tools nos proporciona variables o funcionalidad en modo desarrollo,
+ahora hemos mejorado REact Native Debugger ya que nos permitira ver en modo depuracion las acciones que se estan
+pasando o generando al instante en nuestra aplicacion conforme la usamos, y lo mejor de todo es que nos permite ver las en forma de Arbol (tree) , Grafico (en forma de nodos), Raw (formato plano puro)
+
+ahora podremos ver en modo depuracion :
+  Acciones
+  State
+
 bien ahora nuestro archivo: configureStore.js nos quedara asi:
 
     import { createStore, combineReducers, compose } from 'redux'

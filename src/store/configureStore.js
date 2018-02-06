@@ -5,7 +5,6 @@ const rootReducer = combineReducers({
   places: placesReducer
 })
 
-
 let composeEnhancers = compose
 
 // Solo si estamos en modo desarrollo
