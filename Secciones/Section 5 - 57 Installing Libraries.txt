@@ -1,0 +1,13 @@
+
+
+Vamos a instalar librerias de terceros
+
+  1.- Buscamos en Google la libreria : react-native-vector-icons
+  2.- Leemos el API de la libreria para ver como se usa , en nuestro caso usaremos ionicons
+  2.- Instalamos la libreria : npm install react-native-vector-icons --save
+
+      OJO: Necesitaremos agregar algo a nuestro proyecto en IOS y Android para conectar esta libreria con nuestra App,
+          Ya aue esta libreria a diferencia de Redux no se ejecuta solo con javascript por que necesita correr codigo nativo
+          para funcionar en nuestros emuladores y dispositivos.
+
+  3.- En las paginas de Github de la libreria nos indica que para usar los iconos que vienen en el bundle de la libreria , necesitaremos agregar las fuentes  de los iconos a nuestro proyecto XCode (IOs) y Android with Gradle  (Android)
