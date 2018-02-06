@@ -26,7 +26,7 @@ const placeDetail = props => {
         <View style = {{ marginTop: 20, marginBottom: 20 }} >
           <TouchableOpacity onPress= { props.onItemDeleted }  >
             <View style={ styles.deleteButton } >
-              <Icon name="ios-trash" size={30} color="tomato"/>
+              <Icon name="logo-tux" size={30} color="tomato"/>
             </View>
           </TouchableOpacity>
           <Button title="Close" onPress= { props.onModalClose } color = "tomato" />

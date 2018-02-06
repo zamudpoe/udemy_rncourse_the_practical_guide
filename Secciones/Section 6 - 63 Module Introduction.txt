@@ -1,0 +1,10 @@
+Navigation in React Native Apps
+HOW TO GET FROM A TO B
+
+Que vamos a ver en este modulo?
+
+  Que hay de especial acerca de la Navegacion
+  Soluciones de navegacion disponibles
+  Stack-Based Navigation , Tab-bsed Navigation & Side Drawers
+  Passing Data Around
+  Adding Redux
