@@ -1,0 +1,25 @@
+
+Vamos a usar nuestro propio boton con un icono de la libreria importada , donde ?, hagamoslo en placeDetail.js
+
+    paso 1.  Eliminamos el boton existente ya que crearemos uno nuevo.
+        <Button title="Delete" onPress= { props.onItemDeleted } color = "teal" />
+
+    PASO 2.  Agreguemos "TouchableOpacity" de la libreria react-native
+        import { Modal, View, Image, Text, Button, StyleSheet, TouchableOpacity } from 'react-native'
+
+    Paso 4. importamos Icon
+        import Icon from 'react-native-vector-icons/Ionicons'
+
+    Paso 5 . Usamos la libreria en donde eliminamos el boton
+        <TouchableOpacity onPress= { props.onItemDeleted }>
+          <View style={ styles.deleteButton } >
+            <Icon name="ios-trash" size={30} color="tomato"   />
+          </View>
+        </TouchableOpacity>
+
+    Paso 6: Agregamdpñe esilos al boton
+        deleteButton: {
+          alignItems: 'center'
+        }
+
+      NOTA: consultar los tipos de iconos uqe podems usar : https://ionicframework.com/docs/ionicons/
